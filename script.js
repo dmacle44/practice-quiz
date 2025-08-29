@@ -259,7 +259,7 @@ function gradeQuiz() {
     
     questions.forEach((question, index) => {
         const userAnswer = userAnswers[index];
-        const isCorrect = userAnswer.toLowerCase() === question.answer.toLowerCase();
+        const isCorrect = compareAnswers(userAnswer, question.answer);
         
         if (isCorrect) correctCount++;
         
@@ -288,6 +288,52 @@ function gradeQuiz() {
     document.getElementById('results-list').innerHTML = resultsHTML.join('');
     
     document.getElementById('progress-fill').style.width = '100%';
+}
+
+function compareAnswers(userAnswer, correctAnswer) {
+    // Normalize both answers for comparison
+    const normalizeEquation = (str) => {
+        return str
+            .toLowerCase()
+            .replace(/\s+/g, '')  // Remove all whitespace
+            .replace(/−/g, '-')   // Replace minus sign variants
+            .replace(/\*/g, '')   // Remove multiplication signs in equations
+            .replace(/\+\-/g, '-') // Handle +- as just -
+            .replace(/\-\+/g, '-'); // Handle -+ as just -
+    };
+    
+    const userNormalized = normalizeEquation(userAnswer);
+    const correctNormalized = normalizeEquation(correctAnswer);
+    
+    // Check for direct match
+    if (userNormalized === correctNormalized) {
+        return true;
+    }
+    
+    // Check for equivalent linear equation forms (y=mx+b variations)
+    // This handles cases like "y=-3x+13" vs "y = -3x + 13" vs "y=-3*x+13"
+    const equationPattern = /^y=(-?\d*\.?\d*)x([+-]?\d*\.?\d*)$/;
+    const userMatch = userNormalized.match(equationPattern);
+    const correctMatch = correctNormalized.match(equationPattern);
+    
+    if (userMatch && correctMatch) {
+        const userSlope = userMatch[1] || '1';
+        const userIntercept = userMatch[2] || '0';
+        const correctSlope = correctMatch[1] || '1';
+        const correctIntercept = correctMatch[2] || '0';
+        
+        // Handle implicit 1 or -1 coefficients
+        const normalizeCoeff = (coeff) => {
+            if (coeff === '' || coeff === '+') return '1';
+            if (coeff === '-') return '-1';
+            return coeff;
+        };
+        
+        return normalizeCoeff(userSlope) === normalizeCoeff(correctSlope) && 
+               userIntercept === correctIntercept;
+    }
+    
+    return false;
 }
 
 function restartQuiz() {
