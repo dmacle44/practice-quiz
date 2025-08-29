@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Math Quiz</h1>
+        
+        <div id="quiz-container">
+            <div id="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+            
+            <div id="question-container">
+                <h2 id="question-number"></h2>
+                <p id="question-text"></p>
+                <input type="text" id="answer-input" placeholder="Enter your answer">
+                <button id="next-btn" onclick="nextQuestion()">Next</button>
+                <button id="submit-btn" onclick="submitQuiz()" style="display: none;">Submit Quiz</button>
+            </div>
+        </div>
+        
+        <div id="results-container" style="display: none;">
+            <h2>Quiz Results</h2>
+            <div id="score-display"></div>
+            <div id="results-list"></div>
+            <button onclick="restartQuiz()">Restart Quiz</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

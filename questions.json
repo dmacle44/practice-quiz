@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "id": 1,
+            "question": "What is 15 + 27?",
+            "answer": "42"
+        },
+        {
+            "id": 2,
+            "question": "What is 8 × 7?",
+            "answer": "56"
+        },
+        {
+            "id": 3,
+            "question": "What is 144 ÷ 12?",
+            "answer": "12"
+        },
+        {
+            "id": 4,
+            "question": "What is 93 - 47?",
+            "answer": "46"
+        },
+        {
+            "id": 5,
+            "question": "What is the square root of 256?",
+            "answer": "16"
+        },
+        {
+            "id": 6,
+            "question": "What is 2³ (2 to the power of 3)?",
+            "answer": "8"
+        },
+        {
+            "id": 7,
+            "question": "What is 15% of 80?",
+            "answer": "12"
+        },
+        {
+            "id": 8,
+            "question": "Solve for x: 3x + 7 = 22",
+            "answer": "5"
+        },
+        {
+            "id": 9,
+            "question": "What is the value of π (pi) rounded to 2 decimal places?",
+            "answer": "3.14"
+        },
+        {
+            "id": 10,
+            "question": "What is the sum of angles in a triangle (in degrees)?",
+            "answer": "180"
+        }
+    ]
+}
